@@ -68,6 +68,12 @@ exports.logError = function (message, success, error) {
   }
 };
 
+exports.log = function (message, success, error) {
+  if (typeof success === 'function') {
+    success();
+  }
+};
+
 exports.setCrashlyticsUserId = function (userId, success, error) {
     if (typeof success === 'function') {
         success();

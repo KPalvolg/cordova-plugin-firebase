@@ -131,6 +131,9 @@ public class FirebasePlugin extends CordovaPlugin {
         } else if (action.equals("logError")) {
             this.logError(callbackContext, args.getString(0));
             return true;
+        } else if (action.equals("log")) {
+            this.log(callbackContext, args.getString(0));
+            return true;
         }else if(action.equals("setCrashlyticsUserId")){
             this.setCrashlyticsUserId(callbackContext, args.getString(0));
             return true;
@@ -492,6 +495,21 @@ public class FirebasePlugin extends CordovaPlugin {
                     callbackContext.success(1);
                 } catch (Exception e) {
                     Crashlytics.log(e.getMessage());
+                    e.printStackTrace();
+                    callbackContext.error(e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void log(final CallbackContext callbackContext, final String message) throws JSONException {
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
+                try {
+                    Crashlytics.log(message);
+                    callbackContext.success(1);
+                } catch (Exception e) {
+                    Crashlytics.logException(new Exception(e.getMessage()));
                     e.printStackTrace();
                     callbackContext.error(e.getMessage());
                 }

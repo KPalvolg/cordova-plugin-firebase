@@ -286,8 +286,20 @@ static FirebasePlugin *firebasePlugin;
 
 - (void)logError:(CDVInvokedUrlCommand *)command {
     [self.commandDelegate runInBackground:^{
+        int priority = [[command.arguments objectAtIndex:0] intValue];
+        NSString* tag = [command.arguments objectAtIndex:1];
+        NSString* message = [command.arguments objectAtIndex:2];
+        
+        CLSNSLog(@"%@", message);
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
+}
+
+- (void)log:(CDVInvokedUrlCommand *)command {
+    [self.commandDelegate runInBackground:^{
         NSString* errorMessage = [command.arguments objectAtIndex:0];
-        CLSNSLog(@"%@", errorMessage);
+        CLSLog(@"%@", errorMessage);
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }];
