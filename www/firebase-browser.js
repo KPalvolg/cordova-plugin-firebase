@@ -74,6 +74,36 @@ exports.log = function (message, success, error) {
   }
 };
 
+exports.setString = function (key, value, success, error) {
+  if (typeof success === 'function') {
+    success();
+  }
+};
+
+exports.setBool = function (key, value, success, error) {
+  if (typeof success === 'function') {
+    success();
+  }
+};
+
+exports.setDouble = function (key, value, success, error) {
+  if (typeof success === 'function') {
+    success();
+  }
+};
+
+exports.setFloat = function (key, value, success, error) {
+  if (typeof success === 'function') {
+    success();
+  }
+};
+
+exports.setInt = function (key, value, success, error) {
+  if (typeof success === 'function') {
+    success();
+  }
+};
+
 exports.setCrashlyticsUserId = function (userId, success, error) {
     if (typeof success === 'function') {
         success();

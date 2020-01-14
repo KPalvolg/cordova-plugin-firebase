@@ -22,6 +22,11 @@
 - (void)logEvent:(CDVInvokedUrlCommand*)command;
 - (void)logError:(CDVInvokedUrlCommand*)command;
 - (void)log:(CDVInvokedUrlCommand*)command;
+- (void)setString:(CDVInvokedUrlCommand*)command;
+- (void)setBool:(CDVInvokedUrlCommand*)command;
+- (void)setDouble:(CDVInvokedUrlCommand*)command;
+- (void)setFloat:(CDVInvokedUrlCommand*)command;
+- (void)setInt:(CDVInvokedUrlCommand*)command;
 - (void)setCrashlyticsUserId:(CDVInvokedUrlCommand*)command;
 - (void)setScreenName:(CDVInvokedUrlCommand*)command;
 - (void)setUserId:(CDVInvokedUrlCommand*)command;

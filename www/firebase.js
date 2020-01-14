@@ -64,6 +64,26 @@ exports.log = function (message, success, error) {
   exec(success, error, "FirebasePlugin", "log", [message]);
 };
 
+exports.setString = function (key, value, success, error) {
+  exec(success, error, "FirebasePlugin", "setString", [key, value]);
+};
+
+exports.setBool = function (key, value, success, error) {
+  exec(success, error, "FirebasePlugin", "setBool", [key, value]);
+};
+
+exports.setDouble = function (key, value, success, error) {
+  exec(success, error, "FirebasePlugin", "setDouble", [key, value]);
+};
+
+exports.setFloat = function (key, value, success, error) {
+  exec(success, error, "FirebasePlugin", "setFloat", [key, value]);
+};
+
+exports.setInt = function (key, value, success, error) {
+  exec(success, error, "FirebasePlugin", "setInt", [key, value]);
+};
+
 exports.setCrashlyticsUserId = function (userId, success, error) {
     exec(success, error, "FirebasePlugin", "setCrashlyticsUserId", [userId]);
 };

@@ -134,6 +134,21 @@ public class FirebasePlugin extends CordovaPlugin {
         } else if (action.equals("log")) {
             this.log(callbackContext, args.getString(0));
             return true;
+        } else if (action.equals("setString")) {
+            this.setString(callbackContext, args.getString(0), args.getString(1));
+            return true;
+        } else if (action.equals("setBool")) {
+            this.setBool(callbackContext, args.getString(0), args.getBoolean(1));
+            return true;
+        } else if (action.equals("setDouble")) {
+            this.setDouble(callbackContext, args.getString(0), args.getDouble(1));
+            return true;
+        } else if (action.equals("setFloat")) {
+            this.setFloat(callbackContext, args.getString(0), (float)args.getDouble(1));
+            return true;
+        } else if (action.equals("setInt")) {
+            this.setInt(callbackContext, args.getString(0), args.getInt(1));
+            return true;
         }else if(action.equals("setCrashlyticsUserId")){
             this.setCrashlyticsUserId(callbackContext, args.getString(0));
             return true;
@@ -510,6 +525,81 @@ public class FirebasePlugin extends CordovaPlugin {
                     callbackContext.success(1);
                 } catch (Exception e) {
                     Crashlytics.logException(new Exception(e.getMessage()));
+                    e.printStackTrace();
+                    callbackContext.error(e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void setString(final CallbackContext callbackContext, final String key, final String value) throws JSONException {
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
+                try {
+                    Crashlytics.setString(key, value);
+                    callbackContext.success(1);
+                } catch (Exception e) {
+                    Crashlytics.log(e.getMessage());
+                    e.printStackTrace();
+                    callbackContext.error(e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void setBool(final CallbackContext callbackContext, final String key, final boolean value) throws JSONException {
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
+                try {
+                    Crashlytics.setBool(key, value);
+                    callbackContext.success(1);
+                } catch (Exception e) {
+                    Crashlytics.log(e.getMessage());
+                    e.printStackTrace();
+                    callbackContext.error(e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void setDouble(final CallbackContext callbackContext, final String key, final double value) throws JSONException {
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
+                try {
+                    Crashlytics.setDouble(key, value);
+                    callbackContext.success(1);
+                } catch (Exception e) {
+                    Crashlytics.log(e.getMessage());
+                    e.printStackTrace();
+                    callbackContext.error(e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void setFloat(final CallbackContext callbackContext, final String key, final float value) throws JSONException {
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
+                try {
+                    Crashlytics.setFloat(key, value);
+                    callbackContext.success(1);
+                } catch (Exception e) {
+                    Crashlytics.log(e.getMessage());
+                    e.printStackTrace();
+                    callbackContext.error(e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void setInt(final CallbackContext callbackContext, final String key, final int value) throws JSONException {
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
+                try {
+                    Crashlytics.setInt(key, value);
+                    callbackContext.success(1);
+                } catch (Exception e) {
+                    Crashlytics.log(e.getMessage());
                     e.printStackTrace();
                     callbackContext.error(e.getMessage());
                 }

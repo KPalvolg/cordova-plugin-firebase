@@ -305,6 +305,56 @@ static FirebasePlugin *firebasePlugin;
     }];
 }
 
+- (void)setString:(CDVInvokedUrlCommand *)command {
+    [self.commandDelegate runInBackground:^{
+        NSString* key = [command.arguments objectAtIndex:0];
+        NSString* value = [command.arguments objectAtIndex:1];
+        [CrashlyticsKit setStringValue:value forKey:key];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
+}
+
+- (void)setBool:(CDVInvokedUrlCommand *)command {
+    [self.commandDelegate runInBackground:^{
+        NSString* key = [command.arguments objectAtIndex:0];
+        NSString* value = [[command.arguments objectAtIndex:1] boolValue];
+        [CrashlyticsKit setBoolValue:value forKey:key];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
+}
+
+- (void)setDouble:(CDVInvokedUrlCommand *)command {
+    [self.commandDelegate runInBackground:^{
+        NSString* key = [command.arguments objectAtIndex:0];
+        NSString* value = [command.arguments objectAtIndex:1];
+        [CrashlyticsKit setStringValue:value forKey:key]; //No setDoubleValue method
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
+}
+
+- (void)setFloat:(CDVInvokedUrlCommand *)command {
+    [self.commandDelegate runInBackground:^{
+        NSString* key = [command.arguments objectAtIndex:0];
+        NSString* value = [[command.arguments objectAtIndex:1] floatValue];
+        [CrashlyticsKit setFloatValue:value forKey:key];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
+}
+
+- (void)setInt:(CDVInvokedUrlCommand *)command {
+    [self.commandDelegate runInBackground:^{
+        NSString* key = [command.arguments objectAtIndex:0];
+        NSString* value = [[command.arguments objectAtIndex:1] intValue];
+        [CrashlyticsKit setIntValue:value forKey:key];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
+}
+
 - (void)setCrashlyticsUserId:(CDVInvokedUrlCommand *)command {
     NSString* userId = [command.arguments objectAtIndex:0];
 
