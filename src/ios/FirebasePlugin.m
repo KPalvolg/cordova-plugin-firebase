@@ -286,9 +286,7 @@ static FirebasePlugin *firebasePlugin;
 
 - (void)logError:(CDVInvokedUrlCommand *)command {
     [self.commandDelegate runInBackground:^{
-        int priority = [[command.arguments objectAtIndex:0] intValue];
-        NSString* tag = [command.arguments objectAtIndex:1];
-        NSString* message = [command.arguments objectAtIndex:2];
+        NSString* message = [command.arguments objectAtIndex:0];
         
         CLSNSLog(@"%@", message);
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
