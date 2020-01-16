@@ -309,7 +309,7 @@ static FirebasePlugin *firebasePlugin;
     [self.commandDelegate runInBackground:^{
         NSString* key = [command.arguments objectAtIndex:0];
         NSString* value = [command.arguments objectAtIndex:1];
-        [CrashlyticsKit setStringValue:value forKey:key];
+        [CrashlyticsKit setObjectValue:value forKey:key];
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }];
@@ -318,7 +318,7 @@ static FirebasePlugin *firebasePlugin;
 - (void)setBool:(CDVInvokedUrlCommand *)command {
     [self.commandDelegate runInBackground:^{
         NSString* key = [command.arguments objectAtIndex:0];
-        NSString* value = [[command.arguments objectAtIndex:1] boolValue];
+        BOOL value = [[command.arguments objectAtIndex:1] boolValue];
         [CrashlyticsKit setBoolValue:value forKey:key];
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -329,7 +329,7 @@ static FirebasePlugin *firebasePlugin;
     [self.commandDelegate runInBackground:^{
         NSString* key = [command.arguments objectAtIndex:0];
         NSString* value = [command.arguments objectAtIndex:1];
-        [CrashlyticsKit setStringValue:value forKey:key]; //No setDoubleValue method
+        [CrashlyticsKit setObjectValue:value forKey:key]; //No setDoubleValue method, using string instead to prevent data loss.
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }];
@@ -338,7 +338,7 @@ static FirebasePlugin *firebasePlugin;
 - (void)setFloat:(CDVInvokedUrlCommand *)command {
     [self.commandDelegate runInBackground:^{
         NSString* key = [command.arguments objectAtIndex:0];
-        NSString* value = [[command.arguments objectAtIndex:1] floatValue];
+        float value = [[command.arguments objectAtIndex:1] floatValue];
         [CrashlyticsKit setFloatValue:value forKey:key];
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -348,7 +348,7 @@ static FirebasePlugin *firebasePlugin;
 - (void)setInt:(CDVInvokedUrlCommand *)command {
     [self.commandDelegate runInBackground:^{
         NSString* key = [command.arguments objectAtIndex:0];
-        NSString* value = [[command.arguments objectAtIndex:1] intValue];
+        int value = [[command.arguments objectAtIndex:1] intValue];
         [CrashlyticsKit setIntValue:value forKey:key];
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
