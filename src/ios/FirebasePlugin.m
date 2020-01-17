@@ -287,8 +287,9 @@ static FirebasePlugin *firebasePlugin;
 - (void)logError:(CDVInvokedUrlCommand *)command {
     [self.commandDelegate runInBackground:^{
         NSString* message = [command.arguments objectAtIndex:0];
+        NSError* err = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:[message hash] userInfo:@{NSLocalizedDescriptionKey:message}];
         
-        CLSNSLog(@"%@", message);
+        [CrashlyticsKit recordError:err];
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }];
