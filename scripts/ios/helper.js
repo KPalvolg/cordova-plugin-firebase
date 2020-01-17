@@ -37,7 +37,7 @@ module.exports = {
     xcodeProject.parseSync();
 
     // Build the body of the script to be executed during the build phase.
-    var script = '"' + '\\"${SRCROOT}\\"' + "/\\\"" + utilities.getAppName(context) + "\\\"/Plugins/" + utilities.getPluginId() + "/Fabric.framework/run" + '"';
+    var script = '"' + '\\"${PODS_ROOT}'+ "/Fabric/run" + '\\""';
 
     // Generate a unique ID for our new build phase.
     var id = xcodeProject.generateUuid();
@@ -46,7 +46,7 @@ module.exports = {
           isa: "PBXShellScriptBuildPhase",
           buildActionMask: 2147483647,
           files: [],
-          inputPaths: [],
+          inputPaths: ['"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}"'],
           name: comment,
           outputPaths: [],
           runOnlyForDeploymentPostprocessing: 0,
